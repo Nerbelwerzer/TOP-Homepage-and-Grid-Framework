@@ -30,7 +30,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	font-family: Arial, Helvetica, sans-serif;
 }
 ol, ul {
 	list-style: none;
@@ -131,12 +130,6 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 .float-r {
 	float: right;
 }
-
-.sticky-top {
-	position: sticky;
-	top: 0;
-	z-index: 3;
-}
   
 
 @for $i from 1 through $cols {
@@ -181,7 +174,7 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 
 /* small screen */
 
-@media (max-width: 720px) {
+@media (min-width: 480px) {
 	@for $i from 1 through $cols {
 		$p: percentage($i / $cols);
 
@@ -194,14 +187,14 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 	@each $posname, $pos in $positions {
 		@each $name, $size in $padding {
 			.p#{$posname}-s-#{$name} {
-				padding#{$pos}: $size !important;
+				padding#{$pos}: $size;
 			}
 		}
     }
     
     @each $posname, $pos in $positions {
         @each $name, $size in $padding {
-            .m#{$posname}-s-#{$name} {
+            .m-s#{$posname}-#{$name} {
                 margin#{$pos}: $size !important;
             }
         }
@@ -233,19 +226,13 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 	.d-none-s {
 		display: none;
 	}
-
-	.sticky-top-s {
-		position: sticky;
-		top: 0;
-		z-index: 3;
-	}
 }
 
 
 
 /* Medium screen */
 
-@media (min-width: 721px) {
+@media (min-width: 720px) {
 	@for $i from 1 through $cols {
 		$p: percentage($i / $cols);
 
@@ -265,7 +252,7 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
     
     @each $posname, $pos in $positions {
         @each $name, $size in $padding {
-            .m#{$posname}-m-#{$name} {
+            .m-m#{$posname}-#{$name} {
                 margin#{$pos}: $size !important;
             }
         }
@@ -297,17 +284,7 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 	.d-none-m {
 		display: none;
 	}
-
-	.sticky-top-m {
-		position: sticky;
-		top: 0;
-		z-index: 3;
-	}
 }
-
-
-
-
 
 /* large screen */
 
@@ -331,7 +308,7 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
     
     @each $posname, $pos in $positions {
         @each $name, $size in $padding {
-            .m#{$posname}-l-#{$name} {
+            .m-l#{$posname}-#{$name} {
                 margin#{$pos}: $size !important;
             }
         }
@@ -362,12 +339,6 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 
 	.d-none-l {
 		display: none;
-	}
-
-	.sticky-top-l {
-		position: sticky;
-		top: 0;
-		z-index: 3;
 	}
 
 }
