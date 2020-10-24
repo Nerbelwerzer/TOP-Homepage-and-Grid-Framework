@@ -1,3 +1,5 @@
+@use "sass:map";
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -55,15 +57,98 @@ table {
 
 $cols: 12;
 
-/* padding positions */
+/* padding/margin positions */
 $positions: "" "", "t" "-top", "r" "-right", "b" "-bottom", "l" "-left";
 
-/* padding values */
+/* padding/margin values */
 $padding: "0" 0, "1" .25rem, "2" .5rem, "3" 1rem, "4" 1.5rem, "5" 3rem;
 
 /* spacings for flex containers */
 $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "between" "space-between", "end" "flex-end";
 
+$colours: ( 
+  "orange": #ff6122, 
+  "blue": #2067ff, 
+  "red": #f33434, 
+  "yellow": #fdc52a, 
+  "green": #64be10, 
+  "teal": #1e9783, 
+  "dark": #272727, 
+  "light": #f1f1f1, 
+  "purple": #882688
+);
+
+@each $colour, $value in $colours {
+    .bg-#{$colour} {
+        background-color: $value !important;
+    }
+
+    .text-#{$colour} {
+        background-color: $value !important;
+    }
+}
+
+@each $colour, $value in $colours {
+  .btn-#{$colour} {
+    border: none;
+    padding: 12px 16px;
+    margin: 0;
+    font-family: inherit;
+    font-size: 16px;
+    background-color: $value;
+    @if $colour == "lighter" or $colour == "yellow" {
+      color: #000;
+    } @else {
+      color: #fff;
+    }
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .btn-#{$colour}:hover {
+    background-color: darken($value, 15%);
+  }
+
+}
+
+@for $i from 1 through $cols {
+	$p: percentage($i / $cols);
+
+	.col-#{$i} {
+		width: $p;
+		flex-basis: $p;
+	}
+}
+
+@each $posname, $pos in $positions {
+	@each $name, $size in $padding {
+		.p#{$posname}-#{$name} {
+			padding#{$pos}: $size !important;
+		}
+	}
+}
+
+@each $posname, $pos in $positions {
+	@each $name, $size in $padding {
+		.m#{$posname}-#{$name} {
+			margin#{$pos}: $size !important;
+		}
+	}
+}
+
+
+@each $name, $attr in $spacing {
+	.justify-#{$name} {
+		justify-content: #{$attr};
+	}
+	.align-#{$name} {
+		align-items: #{$attr};
+	}
+
+	.align-content-#{$name} {
+		align-content: #{$attr};
+	}
+}
 
 
 .container {
@@ -139,44 +224,6 @@ $spacing: "center" "center", "evenly" "space-evenly", "around" "space-around", "
 }
   
 
-@for $i from 1 through $cols {
-	$p: percentage($i / $cols);
-
-	.col-#{$i} {
-		width: $p;
-		flex-basis: $p;
-	}
-}
-
-@each $posname, $pos in $positions {
-	@each $name, $size in $padding {
-		.p#{$posname}-#{$name} {
-			padding#{$pos}: $size !important;
-		}
-	}
-}
-
-@each $posname, $pos in $positions {
-	@each $name, $size in $padding {
-		.m#{$posname}-#{$name} {
-			margin#{$pos}: $size !important;
-		}
-	}
-}
-
-
-@each $name, $attr in $spacing {
-	.justify-#{$name} {
-		justify-content: #{$attr};
-	}
-	.align-#{$name} {
-		align-items: #{$attr};
-	}
-
-	.align-content-#{$name} {
-		align-content: #{$attr};
-	}
-}
 
 
 /* small screen */
